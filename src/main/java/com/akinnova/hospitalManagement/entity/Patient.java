@@ -1,16 +1,26 @@
 package com.akinnova.hospitalManagement.entity;
 
-import com.akinnova.hospitalManagement.entity.AbstractClass.BaseEntity;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
-@Data
-@Entity(name = "patient_table")
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class Patient extends BaseEntity {
+@Entity
+@Table(name = "patient_table", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "registrationNumber"),
+        @UniqueConstraint(columnNames = "email"),
+        @UniqueConstraint(columnNames = "contactNumber")
+})
+
+public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "patient_id")
@@ -22,4 +32,13 @@ public class Patient extends BaseEntity {
     private Date dateOfBirth;
     private String emergencyContactName;
     private String emergencyContactNumber;
+    private String address;
+    private String contactNumber;
+    private String email;
+    private String createdBy;
+    @CreationTimestamp
+    private LocalDateTime dateCreated;
+    private String modifiedBy;
+    @UpdateTimestamp
+    private LocalDateTime dateModified;
 }

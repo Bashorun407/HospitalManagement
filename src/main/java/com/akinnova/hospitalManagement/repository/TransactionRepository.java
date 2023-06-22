@@ -13,12 +13,12 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     Boolean existsByInvoiceNumber (String invoiceNumber);
     Boolean existsByMedicationId(Long medicationId);
     Boolean existsByPatientId(Long patientId);
+    Boolean existsByStaffId(Long staffId);
 
-    Optional<Transaction> findById(Long transactionId);
     Optional<Transaction> findByInvoiceNumber(String invoiceNumber);
     Optional<List<Transaction>> findByModeOfPayment(String modeOfPayment);
     Optional<List<Transaction>> findByPatientId(Long patientId);
+    Optional<List<Transaction>> findByStaffId(Long staffId);
     Optional<List<Transaction>> findByMedicationId(Long medicationId);
-    Optional<List<Transaction>> findAllTransaction();
 
 }

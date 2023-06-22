@@ -9,10 +9,9 @@ import java.util.Optional;
 @Repository
 public interface StaffRepository extends JpaRepository<Staff, Long> {
 
-    Boolean exitsByLicenseNumber(String registrationNumber);
+    Boolean existsByLicenseNumber(String licenseNumber);
     Boolean existsByContactNumber(String contactNumber);
-    Optional<Staff> findById(Long staffId);
-    Optional<Staff> findByLicenseNumber(String registrationNumber);
+    Optional<Staff> findByLicenseNumber(String licenseNumber);
     Optional<Staff> findByContactNumber(String contactNumber);
     Optional<Staff> findByEmail(String email);
     Optional<List<Staff>> findByAddress(String address);
@@ -20,5 +19,4 @@ public interface StaffRepository extends JpaRepository<Staff, Long> {
     Optional<List<Staff>> findByFirstName(String firstName);
     Optional<List<Staff>> findByJobTitle(String jobTitle);
     Optional<List<Staff>> findByDepartment(String department);
-    Optional<List<Staff>> findAllStaff();
 }

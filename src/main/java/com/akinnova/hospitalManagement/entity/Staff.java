@@ -1,25 +1,31 @@
 package com.akinnova.hospitalManagement.entity;
 
-import com.akinnova.hospitalManagement.entity.AbstractClass.BaseEntity;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
-@Data
-@Entity(name = "Staff_table")
+@AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class Staff extends BaseEntity {
+@Entity
+@Table(name = "staff_table", uniqueConstraints = {
+        @UniqueConstraint(columnNames = "licenseNumber"),
+        @UniqueConstraint(columnNames = "contactNumber"),
+        @UniqueConstraint(columnNames = "email")
+})
+
+public class Staff{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "staff_id")
     private Long staffId;
-    @ManyToOne
-    @JoinColumn(name = "hospitalId")
-    //@ForeignKey(name = "FK_Staff_Hospital")
-    private Hospital hospitalId;
+    private Long hospitalId;
     private String firstName;
     private String middleName;
     private String lastName;
@@ -28,9 +34,16 @@ public class Staff extends BaseEntity {
     private String department;
     private String licenseNumber;
     private Date dateOfBirth;
-
-    @CreationTimestamp
     private Date dateEmployed;
+    private String address;
+    private String contactNumber;
+    private String email;
+    private String createdBy;
+    @CreationTimestamp
+    private LocalDateTime dateCreated;
+    private String modifiedBy;
+    @UpdateTimestamp
+    private LocalDateTime dateModified;
 
 }
 

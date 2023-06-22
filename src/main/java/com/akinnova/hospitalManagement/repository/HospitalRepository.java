@@ -11,14 +11,11 @@ public interface HospitalRepository extends JpaRepository<Hospital, Long> {
 
     Boolean existsByRegistrationNumber(String registrationNumber);
     Boolean existsByContactNumber(String contactNumber);
-
-    Optional<Hospital> findById(Long hospitalId);
     Optional<Hospital> findByHospitalName(String hospitalName);
-    Optional<Hospital> findHByContactNumber(String contactNumber);
+    Optional<Hospital> findByContactNumber(String contactNumber);
     Optional<Hospital> findByEmail(String email);
     Optional<Hospital> findByRegistrationNumber(String registrationNumber);
     Optional<Hospital> findByAddress(String address);
     Optional<List<Hospital>> findByCity(String city);
-    Optional<List<Hospital>> findAllHospital();
 
 }
